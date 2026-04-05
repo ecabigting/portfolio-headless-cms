@@ -7,6 +7,7 @@ export default defineCliConfig({
   },
   reactStrictMode: true,
   deployment: {
-    autoUpdates: true
+    autoUpdates: true,
+    appId: 'va7jmwol1zv3n1kpqmx6g9us'
   }
 })
