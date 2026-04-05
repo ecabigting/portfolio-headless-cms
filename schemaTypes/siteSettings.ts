@@ -148,6 +148,11 @@ export default defineType({
               title: 'Location',
               type: 'string',
             }),
+            defineField({
+              name: 'companyUrl',
+              title: 'Company URL',
+              type: 'url',
+            }),
           ],
           preview: {
             select: {
