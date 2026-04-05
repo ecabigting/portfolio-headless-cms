@@ -4,6 +4,8 @@ import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 import { codeInput } from '@sanity/code-input'
 
+const singletonType = 'siteSettings'
+
 export default defineConfig({
   name: 'default',
   title: 'portfolio-v2',
@@ -12,7 +14,31 @@ export default defineConfig({
   dataset: 'production',
   appId: 'va7jmwol1zv3n1kpqmx6g9us',
 
-  plugins: [structureTool(), visionTool(), codeInput()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            S.listItem()
+              .title('Site Settings')
+              .child(
+                S.documentList()
+                  .title('Site Settings')
+                  .filter('_type == $type')
+                  .params({ type: singletonType })
+                  .canHandleIntent(() => true)
+              ),
+            S.divider(),
+            S.documentTypeListItem('post').title('Posts'),
+            S.documentTypeListItem('project').title('Projects'),
+            S.documentTypeListItem('author').title('Authors'),
+            S.documentTypeListItem('category').title('Categories'),
+          ]),
+    }),
+    visionTool(),
+    codeInput(),
+  ],
 
   schema: {
     types: schemaTypes,
