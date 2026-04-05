@@ -164,6 +164,15 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'experienceBanner',
+      title: 'Experience Banner',
+      description: 'Banner image for the experience section',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'socialLinks',
       title: 'Social Links',
       description: 'Additional social media profiles',
