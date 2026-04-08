@@ -8,6 +8,13 @@ export default {
       type: "string"
     },
     {
+      name: "featured",
+      title: "Featured",
+      description: "Mark as featured to display prominently on the site",
+      type: "boolean",
+      initialValue: false
+    },
+    {
       name: "date",
       type: "datetime"
     },
@@ -59,5 +66,18 @@ export default {
         layout: "tags"
       }
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: "title",
+      featured: "featured"
+    },
+    prepare(selection: { title?: string; featured?: boolean }) {
+      const { title, featured } = selection
+      return {
+        title: title,
+        subtitle: featured ? "⭐ Featured" : undefined
+      }
+    }
+  }
 }

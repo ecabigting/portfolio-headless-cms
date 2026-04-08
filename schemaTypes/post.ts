@@ -11,6 +11,13 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'featured',
+      title: 'Featured',
+      description: 'Mark as featured to display prominently on the site',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -56,10 +63,15 @@ export default defineType({
       title: 'title',
       author: 'author.name',
       media: 'mainImage',
+      featured: 'featured',
     },
     prepare(selection) {
-      const { author } = selection
-      return { ...selection, subtitle: author && `by ${author}` }
+      const { author, featured } = selection
+      const subtitle = author ? `by ${author}` : undefined
+      return { 
+        ...selection, 
+        subtitle: featured ? `⭐ Featured${subtitle ? ' • ' + subtitle : ''}` : subtitle
+      }
     },
   },
 })
