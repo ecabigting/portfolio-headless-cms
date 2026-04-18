@@ -27,6 +27,14 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      description: 'A short summary of the post used for previews and SEO',
+      type: 'text',
+      rows: 3,
+      validation: (Rule) => Rule.max(160).warning('Longer excerpts may be truncated by search engines'),
+    }),
+    defineField({
       name: 'author',
       title: 'Author',
       type: 'reference',
