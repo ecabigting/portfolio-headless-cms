@@ -34,8 +34,9 @@ export default defineType({
         { title: 'Quote', value: 'blockquote' },
         { title: 'Code', value: 'code' }
       ],
-      lists: [{ title: 'Bullet', value: 'bullet' },
-      { title: 'Numbered', value: 'number' }
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' }
       ],
       // Marks let you mark up inline text in the block editor.
       marks: {
@@ -67,6 +68,26 @@ export default defineType({
     defineArrayMember({
       type: 'image',
       options: { hotspot: true },
+      fields: [
+        {
+          name: 'attribution',
+          title: 'Attribution',
+          type: 'object',
+          fields: [
+            {
+              name: 'description',
+              title: 'Description',
+              type: 'string',
+              validation: (Rule) => Rule.max(30).warning('Description exceeds 30 characters'),
+            },
+            {
+              name: 'link',
+              title: 'Attribution Link',
+              type: 'url',
+            },
+          ],
+        },
+      ],
     }),
   ],
 })

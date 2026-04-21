@@ -49,6 +49,18 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'imageAttribution',
+      title: 'Image Attribution',
+      description: 'Text description for image attribution (max 30 characters)',
+      type: 'string',
+      validation: (Rule) => Rule.max(30).warning('Description exceeds 30 characters'),
+    }),
+    defineField({
+      name: 'imageAttributionUrl',
+      title: 'Image Attribution URL',
+      type: 'url',
+    }),
+    defineField({
       name: 'categories',
       title: 'Categories',
       type: 'array',
